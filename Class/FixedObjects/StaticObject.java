@@ -37,46 +37,45 @@ public abstract class StaticObject
 	}
 	
 	public void jumpRight(){
-                horizontalPosition += 5;
+                horizontalPosition += 1;
 	}
 	
 	public void jumpLeft(){
-                horizontalPosition -= 5;
+                horizontalPosition -= 1;
 	}
 	
 	public void moveLeft(){
-		horizontalPosition -= 5;
+		horizontalPosition -= 6;
 	}
 	
 	public void moveRight(){
-		horizontalPosition += 5;
+		horizontalPosition += 6;
 	}
 	
 	public abstract void draw(Graphics g);
 	
 	public int checkForCollisions(Sprite sprite){{
-		if((sprite.verticalPosition + sprite.height <= this.verticalPosition)&&(sprite.horizontalPosition+sprite.width > this.horizontalPosition)&&(sprite.horizontalPosition < this.horizontalPosition + this.width)){
-			System.out.println("TOP");
-			if(sprite.maxVP >  this.verticalPosition + sprite.height)
+		if((sprite.verticalPosition + sprite.height <= this.verticalPosition)&&(!(sprite.horizontalPosition > this.horizontalPosition + this.width))&&(!(sprite.horizontalPosition + sprite.width < this.horizontalPosition))){
+			if(sprite.maxVP+sprite.height > this.verticalPosition)	
 				collisionTop(sprite);
 			return 1;
 		}
-		else if((sprite.verticalPosition > this.verticalPosition)&&(sprite.verticalPosition + sprite.height < this.verticalPosition + this.height)&&(sprite.horizontalPosition + sprite.width >= this.horizontalPosition)&&(sprite.horizontalPosition + sprite.width< this.horizontalPosition + this.width)){
+		else if((sprite.verticalPosition >= this.verticalPosition + this.height)&&(!(sprite.horizontalPosition > this.horizontalPosition + this.width))&&(!(sprite.horizontalPosition + sprite.width < this.horizontalPosition))){
+			if(sprite.minVP < this.verticalPosition + this.height)	
+				collisionBottom(sprite);
+			return 1;
+		}
+		else if((!(sprite.verticalPosition + sprite.height <= this.verticalPosition))&&(sprite.horizontalPosition + sprite.width >= this.horizontalPosition)&&(sprite.horizontalPosition + sprite.width< this.horizontalPosition + this.width)&&(sprite.horizontalPosition < this.horizontalPosition)){
 			System.out.println("Left side");
 			collisionLeft(sprite);
 			return 1;
 		}
-		else if((sprite.verticalPosition > this.verticalPosition)&&(sprite.verticalPosition + sprite.height < this.verticalPosition + this.height)&&(sprite.horizontalPosition <= this.horizontalPosition + this.width)&&(sprite.horizontalPosition + sprite.width  > this.horizontalPosition)){
+		else if((!(sprite.verticalPosition + sprite.height <= this.verticalPosition))&&(sprite.horizontalPosition <= this.horizontalPosition + this.width)&&(sprite.horizontalPosition + sprite.width>= this.horizontalPosition + this.width)&&(sprite.horizontalPosition > this.horizontalPosition)){
 			System.out.println("Right side");
 			collisionRight(sprite);
 			return 1;
 		}
-		else if((sprite.verticalPosition == this.verticalPosition + this.height)&&(sprite.horizontalPosition < this.horizontalPosition + this.width)&&(sprite.horizontalPosition + sprite.width > this.horizontalPosition)){
-			System.out.println("bottom");
-			collisionBottom(sprite);
-			return 1;
-		}
-		else if((sprite.verticalPosition <= this.verticalPosition)&&(sprite.verticalPosition + sprite.height < this.verticalPosition + this.height)&&(sprite.horizontalPosition + sprite.width >= this.horizontalPosition)&&(sprite.horizontalPosition + sprite.width< this.horizontalPosition + this.width)){
+		else if((sprite.verticalPosition < this.verticalPosition)&&(sprite.verticalPosition + sprite.height < this.verticalPosition + this.height)&&(sprite.horizontalPosition + sprite.width == this.horizontalPosition)&&(sprite.horizontalPosition + sprite.width< this.horizontalPosition + this.width)){
 			System.out.println("Top Left side");
 			collisionTopLeft(sprite);
 			return 1;

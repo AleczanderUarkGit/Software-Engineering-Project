@@ -12,7 +12,7 @@ public class GoldenFlashy extends Movable
 	Image image2;
 	Image image3;
 	
-	GoldenFlashy(int x, int y, int w, int h, String image) throws IOException {
+	public GoldenFlashy(int x, int y, int w, int h, String image) throws IOException {
 		super(x, y, w, h, image);
 		// TODO Auto-generated constructor stub
 	}

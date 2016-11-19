@@ -46,31 +46,5 @@ public class Movable extends Block
 		
 	}
 	
-	public void collisionTop(Sprite sprite){
-		
-	}
 	
-	public void collisionRight(Sprite sprite){
-		
-	}
-	
-	public void collisionLeft(Sprite sprite){
-		
-	}
-	
-	public void collisionTopLeft(Sprite sprite){
-		
-	}
-	
-	public void collisionBottomLeft(Sprite sprite){
-		
-	}
-	
-	public void collisionTopRight(Sprite sprite){
-		
-	}
-	
-	public void collisionBottomRight(Sprite sprite){
-		
-	}
 }

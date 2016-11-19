@@ -37,7 +37,7 @@ public abstract class Characters extends Sprite
 	public void update(){
 		if((this.verticalVelocity != 0) && (verticalPosition <= maxVP)){
 			verticalPosition -= verticalVelocity;
-			verticalVelocity -= 0.8;
+			verticalVelocity -= 0.2;
 		}
 		else{
 			this.verticalVelocity = 0;
@@ -52,8 +52,8 @@ public abstract class Characters extends Sprite
 			System.out.println("error");
 			verticalPosition = minVP;
 		}
-		if(horizontalPosition >= maxHP){
-			horizontalPosition = maxHP;
+		if(horizontalPosition + width >= maxHP){
+			horizontalPosition = maxHP - width;
 			System.out.println("Error Check 3");
 		}
 		
@@ -70,15 +70,15 @@ public abstract class Characters extends Sprite
 	}
 	
 	public void moveUpLeft(){
-                horizontalVelocity = -2;
+                horizontalVelocity = -1;
                 if(jumpCount < 2){
-                    verticalVelocity = 10;
+                    verticalVelocity = 12;
                     jumpCount++;
                 }	
 	}
 	
 	public void moveUpRight(){
-        horizontalVelocity = 2;
+        horizontalVelocity = 1;
         if(jumpCount < 2){
 			verticalVelocity = 10;
 			jumpCount++;
@@ -88,7 +88,7 @@ public abstract class Characters extends Sprite
 	public void jump(){
 		if(jumpCount < 2){
 			System.out.println("Jump");
-			verticalVelocity = 10;
+			verticalVelocity = 6;
 			jumpCount++;
 		}
 	}

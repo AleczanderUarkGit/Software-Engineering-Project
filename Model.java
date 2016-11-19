@@ -12,6 +12,7 @@ import Class.Sprite.SmallMario;
 import Class.FixedObjects.Background;
 import Class.FixedObjects.Fixed;
 import Class.FixedObjects.Floor;
+import Class.FixedObjects.GoldenFlashy;
 import Class.FixedObjects.Hill;
 import Class.FixedObjects.StaticObject;
 import Class.FixedObjects.Tube;
@@ -26,7 +27,7 @@ class Model
 	LinkedList<Sprite> sprites;
 	LinkedList<StaticObject> objects;
 	int numFrame;
-	Mario mario = new SmallMario(33, 268, 26, 32);
+	Mario mario = new SmallMario(33, 305, 26, 32);
 	boolean pause;
 	
 	Model() throws IOException {
@@ -134,6 +135,9 @@ class Model
 			checkForCollisions(mario, sprite);
 			ListIterator<StaticObject> it = objects.listIterator();
 			int collisionCount = 0;
+			mario.maxVP = 600;
+			mario.maxHP = 1000000;
+			mario.minVP = 0;
 			while(it.hasNext()){
 				StaticObject obj = it.next();
 				collisionCount += obj.checkForCollisions(mario);
@@ -144,6 +148,7 @@ class Model
 				if(mario.verticalVelocity == 0)
 					mario.verticalVelocity = -10;
 				mario.maxVP = 600;
+				mario.minVP = 0;
 			}
 		}
 		mario.update();
@@ -209,11 +214,39 @@ class Model
 		objects.add(new Unmovable(3312, 278, 32, 28, "stripedBlock.PNG"));
 		objects.add(new Unmovable(3312, 247, 32, 28, "stripedBlock.PNG"));
 		objects.add(new Unmovable(3344, 278, 32, 28, "stripedBlock.PNG"));
+		objects.add(new GoldenFlashy(3886, 308, 32, 28, "GoldenFlashy.PNG"));
+		objects.add(new GoldenFlashy(3918, 308, 32, 28, "GoldenFlashy.PNG"));
+		objects.add(new GoldenFlashy(3950, 308, 32, 28, "GoldenFlashy.PNG"));
+		objects.add(new GoldenFlashy(3982, 308, 32, 28, "GoldenFlashy.PNG"));
+		objects.add(new GoldenFlashy(4014, 308, 32, 28, "GoldenFlashy.PNG"));
+		objects.add(new GoldenFlashy(4046, 308, 32, 28, "GoldenFlashy.PNG"));
+		objects.add(new GoldenFlashy(4078, 308, 32, 28, "GoldenFlashy.PNG"));
+		objects.add(new GoldenFlashy(3950, 278, 32, 28, "GoldenFlashy.PNG"));
+		objects.add(new GoldenFlashy(3918, 278, 32, 28, "GoldenFlashy.PNG"));
+		objects.add(new GoldenFlashy(3950, 248, 32, 28, "GoldenFlashy.PNG"));
+		objects.add(new GoldenFlashy(3982, 278, 32, 28, "GoldenFlashy.PNG"));
+		objects.add(new GoldenFlashy(4014, 278, 32, 28, "GoldenFlashy.PNG"));
+		objects.add(new GoldenFlashy(4046, 278, 32, 28, "GoldenFlashy.PNG"));
+		objects.add(new GoldenFlashy(3982, 248, 32, 28, "GoldenFlashy.PNG"));
+		objects.add(new GoldenFlashy(4014, 248, 32, 28, "GoldenFlashy.PNG"));
+		objects.add(new GoldenFlashy(4046, 248, 32, 28, "GoldenFlashy.PNG"));
+		objects.add(new GoldenFlashy(4174, 308, 32, 28, "GoldenFlashy.PNG"));
+		objects.add(new GoldenFlashy(4206, 308, 32, 28, "GoldenFlashy.PNG"));
+		objects.add(new GoldenFlashy(4174, 278, 32, 28, "GoldenFlashy.PNG"));
+
+		
+
+
+		
+
+
+
+
 		mario.horizontalPosition = 33;
-		mario.verticalPosition = 268;
+		mario.verticalPosition = 305;
 		mario.height = 32;
 		mario.width = 26;
-		mario.maxVP = 420;
+		mario.maxVP = 305;
 		mario.minVP = 0;
 		mario.maxHP = 1000000;
 		mario.minHP = 0;

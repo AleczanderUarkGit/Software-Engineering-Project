@@ -7,6 +7,7 @@ import javax.swing.Timer;
 
 public class Game extends JFrame implements ActionListener {
 	Model model;
+	static long initial;
 	
 	public Game() throws Exception {
 		this.model = new Model();
@@ -19,7 +20,7 @@ public class Game extends JFrame implements ActionListener {
 		this.getContentPane().add(view);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
-		new Timer(25, this).start(); // Indirectly calls actionPerformed at regular intervals
+		new Timer(7, this).start(); // Indirectly calls actionPerformed at regular intervals
 	}
 
 	public void actionPerformed(ActionEvent evt) {	

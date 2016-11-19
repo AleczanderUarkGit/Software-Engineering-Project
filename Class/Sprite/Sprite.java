@@ -53,12 +53,12 @@ public abstract class Sprite
 		
 	public void moveRight( )
 	{
-		horizontalVelocity = 2;
+		horizontalVelocity = 1;
 	}
 	
 	public void moveLeft()
 	{
-		horizontalVelocity = -2;
+		horizontalVelocity = -1;
 	}
 	
 	public abstract void update();
