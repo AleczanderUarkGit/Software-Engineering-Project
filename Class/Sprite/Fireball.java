@@ -22,4 +22,8 @@ public class Fireball extends Temporaries
 		
 	}
 	
+	public void walk(){
+		
+	}
+	
 }

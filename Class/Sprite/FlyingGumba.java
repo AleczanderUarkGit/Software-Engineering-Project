@@ -11,8 +11,8 @@ public class FlyingGumba extends Gumba
 {
 	private Image redGumbaWithWings;
 	
-	FlyingGumba(int x, int y, int width, int height, String image1, String image2) throws IOException{
-		super(x, y, width, height, image1, image2);
+	FlyingGumba(int x, int y, int width, int height, int maxVP, int maxHP, int minVP, int minHP, String image1, String image2) throws IOException{
+		super(x, y, width, height, maxVP, maxHP, minVP, minHP, image1, image2);
 	}
 	
 	public void jumpLeft( int horizontalPosition, int verticalPosition )
@@ -30,5 +30,39 @@ public class FlyingGumba extends Gumba
 		return null;
 	}
 	
+	public void walk(){}
+	
+	public void collisionTop(Sprite sprite){ 
+	}
+	
+	public void collisionBottom(Sprite sprite){
+		
+	}
+	
+	public void collisionRight(Sprite sprite){
+		
+	}
+	
+	public void collisionLeft(Sprite sprite){
+		
+	}
+	
+	public void collisionTopLeft(Sprite sprite){
+		
+	}
+	
+	public void collisionBottomLeft(Sprite sprite){
+	
+	}
+	
+	public void collisionTopRight(Sprite sprite){
+		
+	}
+	
+	public void collisionBottomRight(Sprite sprite){
+		
+	}
+	
+
 	
 }

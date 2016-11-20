@@ -22,4 +22,8 @@ public class Feather extends Enhancement
 		
 	}
 	
+	public void walk(){
+		
+	}
+	
 }

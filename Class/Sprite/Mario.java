@@ -40,9 +40,10 @@ public class Mario extends Characters
 	
 	private int lives = 4;
 	
+	public int score = 0;
 	
-	Mario(int x, int y, int width, int height, String left, String right) throws IOException{
-		super(x, y, width, height, left, right);
+	Mario(int x, int y, int width, int height, int maxVP, int maxHP, int minVP, int minHP, String left, String right) throws IOException{
+		super(x, y, width, height, maxVP, maxHP, minVP, minHP, left, right);
 	}
 	
 	Mario(){
@@ -90,5 +91,8 @@ public class Mario extends Characters
 	{
 		
 	}
+	
+	public void walk(){}
+	
 	
 }

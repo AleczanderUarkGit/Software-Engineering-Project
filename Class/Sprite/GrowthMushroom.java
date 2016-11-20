@@ -11,4 +11,6 @@ public class GrowthMushroom extends Enhancement
 	public void update(){
 		
 	}
+	
+	public void walk(){}
 }

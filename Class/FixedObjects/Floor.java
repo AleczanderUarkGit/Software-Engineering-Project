@@ -64,6 +64,6 @@ public class Floor extends StaticObject{
 	public void collisionTopRight(Sprite sprite){
 		sprite.maxHP = this.horizontalPosition - sprite.width;
 		sprite.horizontalVelocity = 0;
-		sprite.stuckRight = true;
+		sprite.stuckLeft = true;
 	}
 }

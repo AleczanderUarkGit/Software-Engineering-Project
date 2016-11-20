@@ -36,7 +36,7 @@ public class Tube extends StaticObject
 	}
 	
 	public void collisionLeft(Sprite sprite){
-		if(sprite.maxHP < this.horizontalPosition)
+		if(sprite.maxHP > this.horizontalPosition)
 			sprite.maxHP = this.horizontalPosition;
 		sprite.horizontalVelocity = 0;
 		if(sprite.horizontalPosition + sprite.width >= this.horizontalPosition)

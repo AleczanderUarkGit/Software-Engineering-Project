@@ -16,5 +16,6 @@ public class FlowerThing extends Characters
 		
 	}
 	
+	public void walk(){}
 	
 }

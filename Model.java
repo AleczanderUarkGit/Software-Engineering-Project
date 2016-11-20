@@ -18,6 +18,7 @@ import Class.FixedObjects.StaticObject;
 import Class.FixedObjects.Tube;
 import Class.FixedObjects.Unmovable;
 import Class.Sprite.Characters;
+import Class.Sprite.Enemy;
 import Class.Sprite.Mario;
 import Class.Sprite.Sprite;
 import Class.Sprite.WalkingGumba;
@@ -27,8 +28,9 @@ class Model
 	LinkedList<Sprite> sprites;
 	LinkedList<StaticObject> objects;
 	int numFrame;
-	Mario mario = new SmallMario(33, 305, 26, 32);
+	Mario mario = new SmallMario(33, 305, 26, 32, 305, 100000000, 0, 0);
 	boolean pause;
+	int updateCount;
 	
 	Model() throws IOException {
 		resetModel();
@@ -111,7 +113,7 @@ class Model
 			mario.updateDirection();
 			while(iterator.hasNext()){
 				Sprite sprite = iterator.next();
-				sprite.moveLeft();
+				sprite.moveRight();
 				if(sprite instanceof Characters){
 					Characters character = (Characters)sprite;
 					character.updateDirection();
@@ -129,19 +131,37 @@ class Model
 	
 	public void update(){
 		ListIterator<Sprite> iterator = sprites.listIterator();
+		updateCount++;
 		while(iterator.hasNext()){
 			Sprite sprite = iterator.next();
 			sprite.update();
 			checkForCollisions(mario, sprite);
 			ListIterator<StaticObject> it = objects.listIterator();
 			int collisionCount = 0;
+			int spriteCollisionCount = 0;
 			mario.maxVP = 600;
 			mario.maxHP = 1000000;
 			mario.minVP = 0;
+			sprite.maxVP = 600;
+			sprite.minVP = 0;
+			sprite.maxHP = 10000000;
+			if(sprite instanceof Enemy){
+				Enemy enemy = (Enemy)sprite;
+				try {
+					enemy.checkForCollisions(mario);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			if(updateCount == 20){
+				sprite.walk();
+				updateCount = 0;
+			}
 			while(it.hasNext()){
 				StaticObject obj = it.next();
 				collisionCount += obj.checkForCollisions(mario);
-				collisionCount += obj.checkForCollisions(sprite);
+				spriteCollisionCount += obj.checkForCollisions(sprite);
 				//obj.update();
 			}
 			if(collisionCount == 0){
@@ -179,7 +199,6 @@ class Model
 		objects.clear();
 		objects.add(new Background());
 		objects.add(new Floor(0,337, 1234, 34, "floor.PNG"));
-		sprites.add(new WalkingGumba(100, 420, 18, 20, "Gumba1.PNG", "Gumba2.PNG"));
 		objects.add(new Floor(1235, 308, 925, 63, "Floor2.PNG"));
 		objects.add(new Floor(2290, 336, 703, 34, "Floor3.PNG"));
 		objects.add(new Floor(3057, 336, 160, 35, "Floor4.PNG" ));
@@ -233,15 +252,7 @@ class Model
 		objects.add(new GoldenFlashy(4174, 308, 32, 28, "GoldenFlashy.PNG"));
 		objects.add(new GoldenFlashy(4206, 308, 32, 28, "GoldenFlashy.PNG"));
 		objects.add(new GoldenFlashy(4174, 278, 32, 28, "GoldenFlashy.PNG"));
-
-		
-
-
-		
-
-
-
-
+		sprites.add(new WalkingGumba(100, 305, 26, 32, 305, 10000000, 0, 0, "WalkingGumba1.PNG", "WalkingGumba2.PNG"));
 		mario.horizontalPosition = 33;
 		mario.verticalPosition = 305;
 		mario.height = 32;
@@ -250,7 +261,17 @@ class Model
 		mario.minVP = 0;
 		mario.maxHP = 1000000;
 		mario.minHP = 0;
+		mario.currentImage = mario.leftImage;
 	}
+		
+
+
+		
+
+
+
+
+
 	public void gameOver(Graphics g) throws IOException{
 		Image gameOver = ImageIO.read(new File("GameOver.PNG"));
 		g.drawImage(gameOver, 0, 0, null);

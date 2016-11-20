@@ -14,4 +14,6 @@ public class LifeMushroom extends Enhancement
 		
 	}
 	
+	public void walk(){}
+	
 }

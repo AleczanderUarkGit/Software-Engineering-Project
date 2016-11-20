@@ -19,6 +19,7 @@ public class BigMario extends Mario
 	
 	public SmallMario shrink( )
 	{
+		//this = new SmallMario();
 		return null;
 	}
 	

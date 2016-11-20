@@ -33,11 +33,15 @@ public abstract class Sprite
 	public boolean stuckLeft;
 	public boolean stuckRight;
 	
-	Sprite(int x, int y, int w, int h){
+	Sprite(int x, int y, int w, int h, int maxVP, int maxHP, int minHP, int minVP){
 		horizontalPosition = x;
 		verticalPosition = y;
 		height = h;
 		width = w;
+		this.maxVP = maxVP;
+		this.maxHP = maxHP;
+		this.minVP = minVP;
+		this.minHP = minHP;
 	}
 	
 	Sprite(){
@@ -53,12 +57,12 @@ public abstract class Sprite
 		
 	public void moveRight( )
 	{
-		horizontalVelocity = 1;
+		horizontalPosition ++;
 	}
 	
 	public void moveLeft()
 	{
-		horizontalVelocity = -1;
+		horizontalPosition --;
 	}
 	
 	public abstract void update();
@@ -67,4 +71,6 @@ public abstract class Sprite
 		
 	}*/
 	
+	public abstract void walk();
+
 }

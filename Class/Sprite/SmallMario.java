@@ -16,9 +16,9 @@ public class SmallMario extends Mario
 	private Image right2;
 	private Image left2;
 	
-	public SmallMario(int x, int y, int width, int height) throws IOException{
+	public SmallMario(int x, int y, int width, int height, int maxVP, int maxHP, int minVP, int minHP) throws IOException{
 		//local variable
-			super(x, y, width, height, "small_mario_right.PNG", "small_mario_left.PNG");
+			super(x, y, width, height, maxVP, maxHP, minVP, minHP, "small_mario_right.PNG", "small_mario_left.PNG");
 			this.currentImage = ImageIO.read(new File("small_mario_right.PNG")); 
 			this.maxVP = 600;
 			this.minVP = 0;
@@ -27,8 +27,19 @@ public class SmallMario extends Mario
 	}
 	
 	
-	public void dieByContact( int verticalPosition, int lives )
-	{
+	public void dieByContact() throws IOException{
+		this.currentImage = ImageIO.read(new File("mario_normal.PNG")); 
+		this.jump();
+		this.maxVP = 1000;
+		this.verticalPosition = 1000;
+	}
+	
+	public void moveRight(){
+		horizontalVelocity = 1;
+	}
+	
+	public void moveLeft(){
+		horizontalVelocity= -1;
 	}
 	
 	public BigMario grow( )

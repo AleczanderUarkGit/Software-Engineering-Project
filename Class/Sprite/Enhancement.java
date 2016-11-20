@@ -17,5 +17,7 @@ public abstract class Enhancement extends Sprite
 		
 	}
 	
+	public abstract void walk();
+	
 	public abstract void update();
 }

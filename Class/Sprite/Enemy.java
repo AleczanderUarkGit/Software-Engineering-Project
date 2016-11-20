@@ -1,60 +1,16 @@
-/**
- * @(#) StaticObject.java
- */
+package Class.Sprite;
 
-package Class.FixedObjects;
+import java.io.IOException;
 
-import java.lang.Object;
+public abstract class Enemy extends Characters {
+	
+	public Enemy(int x, int y, int w, int h, int maxVP, int maxHP, int minVP, int minHP, String left, String right) throws IOException{
+		super(x, y, w, h, maxVP, maxHP, minVP, minHP, left, right);
+	}
+	
+	public abstract void walk();
 
-import Class.Sprite.Mario;
-import Class.Sprite.Sprite;
-
-import java.awt.Image;
-import java.awt.Graphics;
-
-public abstract class StaticObject
-{
-	public int verticalPosition;
-	public int horizontalPosition;
-	public int height;
-	public int width;
-	public boolean decay;
-	
-	StaticObject(int x, int y, int w, int h){
-		horizontalPosition = x;
-		verticalPosition = y;
-		height = h;
-		width = w;
-	}
-	
-	StaticObject(){
-		
-	}
-	
-	public void onContact( java.lang.Object Object )
-	{
-		
-	}
-	
-	public void jumpRight(){
-                horizontalPosition += 1;
-	}
-	
-	public void jumpLeft(){
-                horizontalPosition -= 1;
-	}
-	
-	public void moveLeft(){
-		horizontalPosition -= 6;
-	}
-	
-	public void moveRight(){
-		horizontalPosition += 6;
-	}
-	
-	public abstract void draw(Graphics g);
-	
-	public int checkForCollisions(Sprite sprite){
+	public int checkForCollisions(Sprite sprite) throws IOException{
 		if((sprite.verticalPosition + sprite.height <= this.verticalPosition)&&(!(sprite.horizontalPosition > this.horizontalPosition + this.width))&&(!(sprite.horizontalPosition + sprite.width < this.horizontalPosition))){
 			if(sprite.maxVP+sprite.height > this.verticalPosition)	
 				collisionTop(sprite);
@@ -95,15 +51,17 @@ public abstract class StaticObject
 			collisionTopRight(sprite);
 			return 1;
 		}
-	return 0;
-}
-	public abstract void collisionTopRight(Sprite sprite);
-	public abstract void collisionTopLeft(Sprite sprite);
-	public abstract void collisionBottomLeft(Sprite sprite);
-	public abstract void collisionBottomRight(Sprite sprite);
-	public abstract void collisionTop(Sprite sprite);
-	public abstract void collisionBottom(Sprite sprite);
-	public abstract void collisionLeft(Sprite sprite);
-	public abstract void collisionRight(Sprite sprite);
+		return 0;
+	}
+	
+	public abstract void collisionTopRight(Sprite sprite) throws IOException;;
+	public abstract void collisionBottomRight(Sprite sprite) throws IOException;
+	public abstract void collisionTopLeft(Sprite sprite) throws IOException;
+	public abstract void collisionBottomLeft(Sprite sprite) throws IOException;
+	public abstract void collisionTop(Sprite sprite) throws IOException;
+	public abstract void collisionBottom(Sprite sprite) throws IOException;
+	public abstract void collisionLeft(Sprite sprite) throws IOException;
+	public abstract void collisionRight(Sprite sprite) throws IOException;
+	
 	
 }

@@ -24,4 +24,5 @@ public class Shell extends Temporaries
 	public void update(){
 	}
 	
+	public void walk(){}
 }

@@ -13,14 +13,14 @@ import java.io.IOException;
 
 public abstract class Characters extends Sprite
 {
-	private Image leftImage;
-	private Image rightImage;
+	public Image leftImage;
+	public Image rightImage;
 	public Image currentImage;
 
 	int jumpCount = 0;
 	
-	Characters(int x, int y, int width, int height, String left, String right) throws IOException{
-		super(x, y, width, height);
+	Characters(int x, int y, int width, int height, int maxVP, int maxHP, int minVP, int minHP, String left, String right) throws IOException{
+		super(x, y, width, height, maxVP, maxHP, minVP, minHP);
 		
 		leftImage = ImageIO.read(new File(left));
 		rightImage = ImageIO.read(new File(right));
@@ -91,6 +91,15 @@ public abstract class Characters extends Sprite
 			verticalVelocity = 6;
 			jumpCount++;
 		}
+	}
+	
+	public void switchImage(){
+		if(this.currentImage.equals(leftImage))
+			this.currentImage = rightImage;
+		else if(this.currentImage.equals(rightImage))
+			this.currentImage = leftImage;
+		else
+			this.currentImage = leftImage;
 	}
 	
 

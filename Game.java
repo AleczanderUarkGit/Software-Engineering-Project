@@ -8,6 +8,7 @@ import javax.swing.Timer;
 public class Game extends JFrame implements ActionListener {
 	Model model;
 	static long initial;
+	public int score = 0;
 	
 	public Game() throws Exception {
 		this.model = new Model();

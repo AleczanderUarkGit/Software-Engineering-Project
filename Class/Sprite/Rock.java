@@ -14,5 +14,5 @@ public class Rock extends Temporaries
 	}
 	public void update(){
 	}
-	
+	public void walk(){}
 }
